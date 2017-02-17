@@ -1,4 +1,12 @@
-# easy-peasy-slash-command-app
-A template project to get you started writing Slack slash commands using Botkit
+# standbot
+A simple slack slash command responder. alerts the user to any potential enemy stands
 
-Follow along with [Easy Peasy Slash Commands](https://medium.com/slack-developer-blog/easy-peasy-slash-commands-getting-started-c37ff3f14d3e#.nfr4px2vi)
+1. npm install
+2. get your team id and feed it into your process envs along with a port
+3. run like `TEAM_ID=<myteam> PORT=<myport> npm start`
+
+4. follow along here and set up a slash command: https://get.slack.help/hc/en-us/articles/201259356-Slash-commands
+5. point the command to `http://myhost:myport/slack/receive`
+6. enjoy
+
+todo: let's make a slightly more attractive response, right?
