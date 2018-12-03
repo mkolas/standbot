@@ -50,13 +50,15 @@ controller.on('slash_command', function (slashCommand, message) {
 
             // otherwise fire out some brackets and gos
 
-            var outputText = message.text.toUpperCase().split('').join(' ');
-
-            outputText = " _ゴゴゴ_ `「 " + outputText + " 」` _ゴゴゴ_ ";
+            //var outputText = message.text.toUpperCase().split('').join(' ');
+            var shiftCharCode = Δ => c => String.fromCharCode(c.charCodeAt(0) + Δ);
+	    var outputText = message.text.toUpperCase().replace(/[!-~]/g, shiftCharCode(0xFEE0)).replace(/ /g, "   ")
+            outputText = " _ゴゴゴ_ 「 " + outputText + " 」 _ゴゴゴ_ ";
 
             // If we made it here, just echo what the user typed back at them
             //TODO You do it!
-            slashCommand.replyPublic(message, outputText);
+	    slashCommand.replyAcknowledge(function(){});
+            slashCommand.replyPublicDelayed(message, outputText);
 
             break;
         case "/clappify": 
@@ -66,7 +68,8 @@ controller.on('slash_command', function (slashCommand, message) {
                 return;
             }
             var outputText = message.text.split(' '). join(' :clap: ');
-            slashCommand.replyPublic(message, outputText);
+	    slashCommand.replyAcknowledge(function(){});
+	    slashCommand.replyPublicDelayed(message, outputText);
             break;
         default:
             slashCommand.replyPublic(message, "I'm afraid I don't know how to " + message.command + " yet.");
