@@ -59,11 +59,19 @@ controller.on('slash_command', function (slashCommand, message) {
             slashCommand.replyPublic(message, outputText);
 
             break;
+        case "/clappify": 
+            if (message.text === "") {
+                slashCommand.replyPublic(message,
+                    "Be the :clap: you wish to see in the world.");
+                return;
+            }
+            var outputText = message.text.split(' '). join(' :clap: ');
+            slashCommand.replyPublic(message, outputText);
+            break;
         default:
             slashCommand.replyPublic(message, "I'm afraid I don't know how to " + message.command + " yet.");
 
     }
-
 })
 ;
 
