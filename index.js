@@ -50,14 +50,12 @@ controller.on('slash_command', function (slashCommand, message) {
 
             // otherwise fire out some brackets and gos
 
-            var outputText = message.text.toUpperCase().split('').join(' ');
-
-            outputText = " _ゴゴゴ_ `「 " + outputText + " 」` _ゴゴゴ_ ";
+            var shiftCharCode = Δ => c => String.fromCharCode(c.charCodeAt(0) + Δ);
+            var outputText = message.text.toUpperCase().replace(/[!-~]/g, shiftCharCode(0xFEE0))
+            outputText = " _ゴゴゴ_ 「 " + outputText + " 」 _ゴゴゴ_ ";
 
             // If we made it here, just echo what the user typed back at them
-            //TODO You do it!
             slashCommand.replyPublic(message, outputText);
-
             break;
         case "/clappify": 
             if (message.text === "") {
